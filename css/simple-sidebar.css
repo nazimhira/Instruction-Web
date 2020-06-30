@@ -1,0 +1,76 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+body {
+	overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+	min-height: 100vh;
+	min-width: 308px;
+	margin-left: -15rem;
+	-webkit-transition: margin .25s ease-out;
+	-moz-transition: margin .25s ease-out;
+	-o-transition: margin .25s ease-out;
+	transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+	padding: 0.875rem 1.25rem;
+	font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+	width: 15rem;
+}
+
+.tags {
+	width: 100%;
+	box-shadow: 0 0.9px 1.6px rgba(0, 0, 0, 0.025),
+	0 2.1px 3.9px rgba(0, 0, 0, 0.036),
+	0 3.9px 7.3px rgba(0, 0, 0, 0.045),
+	0 6.9px 13px rgba(0, 0, 0, 0.054),
+	0 13px 24.2px rgba(0, 0, 0, 0.065),
+	0 31px 58px rgba(0, 0, 0, 0.09);
+	font-size: smaller;
+}
+
+.box {
+	width: 15px;
+	height: 50px;
+}
+
+#svg path{
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 0;
+}
+
+span{
+	margin-right: 2px;
+}
+
+
+#page-content-wrapper {
+	min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+	margin-left: 0;
+}
+
+@media (min-width: 768px) {
+	#sidebar-wrapper {
+		margin-left: 0;
+	}
+
+	#page-content-wrapper {
+		min-width: 0;
+		width: 100%;
+	}
+
+	#wrapper.toggled #sidebar-wrapper {
+		margin-left: -20rem;
+	}
+}

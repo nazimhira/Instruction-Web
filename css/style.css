@@ -1,0 +1,24 @@
+*{
+    box-sizing: border-box;
+}
+
+/*.navigation{*/
+/*    height: 100vh;*/
+/*    background-color: #165d80;*/
+/*}*/
+
+.tab{
+    /*border: 1px solid #ababc8;*/
+    background-color: #b4bec3;
+    width: 80%;
+}
+
+.tabing{
+    padding: 12px;
+    transition: 0.3s;
+}
+
+.tabing:hover{
+    background-color: #ddd;
+    box-shadow: 5px 5px 50px 2px gray;
+}
