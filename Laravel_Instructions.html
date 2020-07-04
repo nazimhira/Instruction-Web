@@ -161,6 +161,16 @@
 					<a class="list-group-item list-group-item-action bg-light tags border border-muted nav-link animatedTab"
 					   data-toggle="tab" href="#twenty-two" id="twenty-second" role="tab">Default Profile Image</a>
 				</li>
+				<li class="nav-item d-flex text-nowrap">
+					<span class="box border border-muted bg-light"></span>
+					<a class="list-group-item list-group-item-action bg-light tags border border-muted nav-link animatedTab"
+					   data-toggle="tab" href="#twenty-three" id="twenty-third" role="tab">Follow/Unfollow</a>
+				</li>
+				<li class="nav-item d-flex text-nowrap">
+					<span class="box border border-muted bg-light"></span>
+					<a class="list-group-item list-group-item-action bg-light tags border border-muted nav-link animatedTab"
+					   data-toggle="tab" href="#twenty-four" id="twenty-forth" role="tab">Many to Many Relationship</a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -629,6 +639,37 @@
 						</li>
 					</ul>
 				</div>
+				<div class="tab-pane container m-5 fade" id="twenty-three" role="tabpanel">
+					<ul>
+						<li>
+							Make a Follow Button. Search for a file named ExampleComponent.vue in resources/js/components/. Rename it and give an alias name. Then go to app.js and find Vue,component and change it according to the previous change.
+						</li>
+						<li>
+							Inside the .vue we will write everything inside 'template' element and there will be a single div element. This is very important. In the div element cut and paste the follow button and just pass a the alias name of the .vue as element. We will see no difference from previous.
+						</li>
+						<li>
+							To connect the server through vue js laravel has a feature name axios. In script element we will add all the methods and props.
+						</li>
+						<li>
+							Create a new controller named followController. In web.php set a route post('follow/{user}', 'followController@store');.
+						</li>
+						<li>
+							Pass the user id from index.blade directly as a property of followButton element. Then inside script write 'Props: [userId]'. Make a method:
+							<br>
+							methods: { <br>
+							followUser(){ <br>
+							axios.post('/follow/' + this.userId) <br>
+							.then(response => { <br>
+							alert(response.data); <br>
+							})<br>
+							}<br>
+							}
+						</li>
+					</ul>
+				</div>
+				<div class="tab-pane container m-5 fade" id="twenty-four" role="tabpanel">
+
+				</div>
 			</div>
 		</div>
 		<!-- /#wrapper -->
@@ -641,6 +682,7 @@
             $("#wrapper").toggleClass("toggled");
         });
 		</script>
+
 
 		<!--		animation script-->
 		<script src="lib/anime.es.js"></script>
@@ -809,6 +851,20 @@
             endDelay: 1000,
             direction: 'alternate'
         });
+        let A23 = anime({
+            targets: '#twenty-third',
+            translateX: 31,
+            autoplay: false,
+            endDelay: 1000,
+            direction: 'alternate'
+        });
+        let A24 = anime({
+            targets: '#twenty-forth',
+            translateX: 31,
+            autoplay: false,
+            endDelay: 1000,
+            direction: 'alternate'
+        });
 
         document.querySelector('#first, #first').onclick = A1.play;
         document.querySelector('#second, #second').onclick = A2.play;
@@ -832,6 +888,8 @@
         document.querySelector('#twentieth, #twentieth').onclick = A20.play;
         document.querySelector('#twenty-first, #twenty-first').onclick = A21.play;
         document.querySelector('#twenty-second, #twenty-second').onclick = A22.play;
+        document.querySelector('#twenty-third, #twenty-third').onclick = A23.play;
+        document.querySelector('#twenty-forth, #twenty-forth').onclick = A24.play;
 		</script>
 	</div>
 </div>
