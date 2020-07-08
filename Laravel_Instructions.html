@@ -672,6 +672,36 @@
 						<li>
 							To establish many to many relationship we need a pivot table which will contain all the info of following and follower. Write the command in terminal: php artisan make:migration create_variable1_variable2_pivot_table --create profile_user.
 						</li>
+						<li>
+							Inside the table create two table for profile_id and user_id which will be unsignedBigInt. Migrate the Database.
+						</li>
+						<li>
+							In user.php set a relation by belongToMany with Profile and in profile.php with User.
+						</li>
+						<li>
+							In followController we need to put a relation which will attach/detach user with the profile. There is a method in Laravel named toggle which will do this action. So it will be:
+							<br>
+							return auth()->user()->following()->toggle(user->profile);
+						</li>
+						<li>
+							To change the status of Follow button we need to know what is the current status. In index/followbutton we need to pass a status as a attribute i.e. follows="{{ $follows }}". In profileController index function set a variable $follows and pass string 'follows' in view(compact()). $follows = (auth()->user()) ? auth()->user->following->contains($user->id) : false;
+						</li>
+						<li>
+							In followButton.vue add props: ['follows'] and set: <br>
+							data: function() { <br>
+							return { <br>
+							status : this.follows, <br>
+							}
+						</li>
+						<li>
+							Add v-text property inside followbutton and set: <br>
+							computed: { <br>
+							return (this.status) ? 'Unfollow' : 'Follow'; <br>
+							}
+						</li>
+						<li>
+							To flip the status, in methods/ .then add this.status = ! this.status;
+						</li>
 					</ul>
 				</div>
 			</div>
