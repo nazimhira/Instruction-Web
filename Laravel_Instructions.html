@@ -171,6 +171,11 @@
 					<a class="list-group-item list-group-item-action bg-light tags border border-muted nav-link animatedTab"
 					   data-toggle="tab" href="#twenty-four" id="twenty-forth" role="tab">Many to Many Relationship</a>
 				</li>
+				<li class="nav-item d-flex text-nowrap">
+					<span class="box border border-muted bg-light"></span>
+					<a class="list-group-item list-group-item-action bg-light tags border border-muted nav-link animatedTab"
+					   data-toggle="tab" href="#twenty-five" id="twenty-fifth" role="tab">Laravel Telescope</a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -642,19 +647,26 @@
 				<div class="tab-pane container m-5 fade" id="twenty-three" role="tabpanel">
 					<ul>
 						<li>
-							Make a Follow Button. Search for a file named ExampleComponent.vue in resources/js/components/. Rename it and give an alias name. Then go to app.js and find Vue,component and change it according to the previous change.
+							Make a Follow Button. Search for a file named ExampleComponent.vue in resources/js/components/. Rename it
+							and give an alias name. Then go to app.js and find Vue,component and change it according to the previous
+							change.
 						</li>
 						<li>
-							Inside the .vue we will write everything inside 'template' element and there will be a single div element. This is very important. In the div element cut and paste the follow button and just pass a the alias name of the .vue as element. We will see no difference from previous.
+							Inside the .vue we will write everything inside 'template' element and there will be a single div element.
+							This is very important. In the div element cut and paste the follow button and just pass a the alias name
+							of the .vue as element. We will see no difference from previous.
 						</li>
 						<li>
-							To connect the server through vue js laravel has a feature name axios. In script element we will add all the methods and props.
+							To connect the server through vue js laravel has a feature name axios. In script element we will add all
+							the methods and props.
 						</li>
 						<li>
-							Create a new controller named followController. In web.php set a route post('follow/{user}', 'followController@store');.
+							Create a new controller named followController. In web.php set a route post('follow/{user}',
+							'followController@store');.
 						</li>
 						<li>
-							Pass the user id from index.blade directly as a property of followButton element. Then inside script write 'Props: [userId]'. Make a method:
+							Pass the user id from index.blade directly as a property of followButton element. Then inside script write
+							'Props: [userId]'. Make a method:
 							<br>
 							methods: { <br>
 							followUser(){ <br>
@@ -670,21 +682,28 @@
 				<div class="tab-pane container m-5 fade" id="twenty-four" role="tabpanel">
 					<ul>
 						<li>
-							To establish many to many relationship we need a pivot table which will contain all the info of following and follower. Write the command in terminal: php artisan make:migration create_variable1_variable2_pivot_table --create profile_user.
+							To establish many to many relationship we need a pivot table which will contain all the info of following
+							and follower. Write the command in terminal: php artisan make:migration
+							create_variable1_variable2_pivot_table --create profile_user.
 						</li>
 						<li>
-							Inside the table create two table for profile_id and user_id which will be unsignedBigInt. Migrate the Database.
+							Inside the table create two table for profile_id and user_id which will be unsignedBigInt. Migrate the
+							Database.
 						</li>
 						<li>
 							In user.php set a relation by belongToMany with Profile and in profile.php with User.
 						</li>
 						<li>
-							In followController we need to put a relation which will attach/detach user with the profile. There is a method in Laravel named toggle which will do this action. So it will be:
+							In followController we need to put a relation which will attach/detach user with the profile. There is a
+							method in Laravel named toggle which will do this action. So it will be:
 							<br>
 							return auth()->user()->following()->toggle(user->profile);
 						</li>
 						<li>
-							To change the status of Follow button we need to know what is the current status. In index/followbutton we need to pass a status as a attribute i.e. follows="{{ $follows }}". In profileController index function set a variable $follows and pass string 'follows' in view(compact()). $follows = (auth()->user()) ? auth()->user->following->contains($user->id) : false;
+							To change the status of Follow button we need to know what is the current status. In index/followbutton we
+							need to pass a status as a attribute i.e. follows="{{ $follows }}". In profileController index function
+							set a variable $follows and pass string 'follows' in view(compact()). $follows = (auth()->user()) ?
+							auth()->user->following->contains($user->id) : false;
 						</li>
 						<li>
 							In followButton.vue add props: ['follows'] and set: <br>
@@ -701,6 +720,37 @@
 						</li>
 						<li>
 							To flip the status, in methods/ .then add this.status = ! this.status;
+						</li>
+						<li>
+							If user not logged in and he tries to follow a profile, an error = 500 will be thrown which says
+							authenticated user is null. To fix that in followController add a constructor function:
+							<br>
+							public function __construct() <br>
+							{ <br>
+							$this->middleware('auth'); <br>
+							} <br>
+							Now a new error = 401 unauthorized will be thrown. To counter that in followButton.vue/methods/followUser
+							add:
+							<br>
+							.catch (errors => { <br>
+							if (errors.response.status == 401) { <br>
+							window.location = '/login'; <br>
+							} <br>
+							})
+						</li>
+					</ul>
+				</div>
+				<div class="tab-pane container m-5 fade" id="twenty-five" role="tabpanel">
+					<ul>
+						<li>
+							To get Laravel Telescope run command: composer require laravel/telescope
+							<br>
+							It will add some telescope commands in php artisan section. From that run: php artisan telescope:install
+							<br>
+							Finally run php artisan migrate
+						</li>
+						<li>
+
 						</li>
 					</ul>
 				</div>
@@ -899,6 +949,13 @@
             endDelay: 1000,
             direction: 'alternate'
         });
+        let A25 = anime({
+            targets: '#twenty-fifth',
+            translateX: 31,
+            autoplay: false,
+            endDelay: 1000,
+            direction: 'alternate'
+        });
 
         document.querySelector('#first, #first').onclick = A1.play;
         document.querySelector('#second, #second').onclick = A2.play;
@@ -924,6 +981,7 @@
         document.querySelector('#twenty-second, #twenty-second').onclick = A22.play;
         document.querySelector('#twenty-third, #twenty-third').onclick = A23.play;
         document.querySelector('#twenty-forth, #twenty-forth').onclick = A24.play;
+        document.querySelector('#twenty-fifth, #twenty-fifth').onclick = A25.play;
 		</script>
 	</div>
 </div>
